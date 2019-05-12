@@ -45,7 +45,7 @@ This is the most open ended part of the project and one of the most exciting asp
 The code can be found in the EDA jupyter notebook but the resulting graphs and findings are below. 
 
 #### What is the breakdown of reviews given by customers?
-![Countplot of Reviews by Stars given](/images/number_of_reviews.png)
+![Countplot of Reviews by Stars given](/images/Yelp/number_of_reviews.png)
 As you can see, there is a much larger amount of five star reviews than any other category. This will naturally skew the data a little towards the 5 star reviews due to the large number of samples, as well as splitting by stars given, we can over come this. 
 
 #### Is there a difference in language used based on the number of stars given? 
@@ -67,29 +67,25 @@ While the trends are not strong, there seems to be some pattern that users who o
 This question came out of exploration of the Gensim word2 vec model I created. I found rhart rthere were certain words that appeared next to each other fairly often and so I wanted to make sure I understood if they are associated with each other or not. A great example of this is Dr. J Phillips. These words appeared next to each other often but are not actually tied together. I decided use a bigram finder and see if I could combine hese words. I ran the bigram finder twice, once on the original data and onc new bigrams in order to successfuly create the trigram "dr j phillips". I then used this scrubbed data, with stop words removed for the rest of my project. 
 
 Below is an example of words that appear close to sandwhich. As you can see, the trigram model has successfully created some associations.
+<br>
 ![Word2Vec most similar to sandwhich](/images/Yelp/sandwhich.png)
 
 
 #### Are there any themes that emerge from the data and do those themes vary by number of stars?
 
-I used gensim's LDA model to determine whether there were any themes in the reviews. Below is a visual of the themes for 1 star and 5 star reviews. 
-
-![Graph of themes for 1 star reviews using frequency count and importance](/images/yelp_keyword_graph.png)
-![Graph of themes for 5 star reviews using frequency count and importance](/images/yelp_keyword_graph_5star.png)
-
-Based on the key words, it is possible to start extrapulating possible themes. For example:
+I used gensim's LDA model to determine whether there were any themes in the reviews. Below is a visual of the themes for 1 star and 5 star reviews. Based on the key words, it is possible to start extrapulating possible themes.
 
 ***One Star Reviews***
 As you can see from the graphs below, this attempt to create topics has been partially successful. Some topics, such as topic 0 seem to be too broad to really be useful. It seems to follow a restaurant theme however the word count is much larger than the associated weight which would indicate that those words do not hold as much importance as it would seem. Another great example of a topic that is too broad is topic 8.
 
 There are some topics though that seem to have been successfully learned. Topic 1 seems to refer to a pharmecy/doctors office, maybe with a dr. cox. Topic 2 refers to airlines and airports, likely allegiant. 
-[Graph of word count and importance](/images/Yelp/yelp_keyword_graph.png)
+![Graph of word count and importance](/images/Yelp/yelp_keyword_graph.png)
 
 ***Five Star Reviews***
 
 When looking at the topics within 5 star reviews, there seem to be less clarity. Topic 6 seems to refer to a donut, breakfast place and topic 9 is describing a barbershop. Topic 0 refers to good service and there are a few restaurant topics as well. 
 
-[Graph of word count and importance](/images/Yelp/yelp_keyword_graph_5star.png)
+![Graph of word count and importance](/images/Yelp/yelp_keyword_graph_5star.png)
 
 The next step for this model is t return to my text cleaner and remove words that have a significantly higher word count than their associated weights.
 
@@ -112,7 +108,7 @@ Supervised Learning Models:
     2. Logistical Regression Model: *53.46% (+/- 0.1023%)*
     3. Random Forest Model: *53.74% (+/- 0.1313%)*
     4. Linear SVC Model: *53.45% (+/- 0.08733%)*
-![Model performance for numerical models](/images/Yelp/MP_num.png)
+![Model performance for numerical models](/images/Yelp/MP_Num.png)
     
 After completing these supervised models I attempted to see if I could improve my model performance by combining multiple models together. I started with a combination of the two Logistical Regression Models because they were quick and strong performers. I found that the best result on my test data came from a model that was based 100% on my text model and used no numerical data. 
  
